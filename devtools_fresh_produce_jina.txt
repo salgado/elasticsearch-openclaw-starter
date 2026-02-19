@@ -37,7 +37,7 @@ PUT _inference/text_embedding/jina-embeddings-v3
 # ══════════════════════════════════════════════════════════════════════
 # STEP 2 — Create the index with mapping
 # ══════════════════════════════════════════════════════════════════════
-# The `semantic_text` field handles semantic search.
+# The `semantic_content` field handles semantic search.
 # It delegates embedding generation to the endpoint created in Step 1.
 
 PUT fresh_produce_jina
@@ -58,7 +58,7 @@ PUT fresh_produce_jina
       "stock_kg":       { "type": "integer" },
       "image_url":      { "type": "keyword" },
       "updated_at":     { "type": "date" },
-      "semantic_text": {
+      "semantic_content": {
         "type": "semantic_text",
         "inference_id": "jina-embeddings-v3"
       }
@@ -71,30 +71,30 @@ PUT fresh_produce_jina
 # STEP 3 — Bulk index documents
 # ══════════════════════════════════════════════════════════════════════
 # NDJSON format: one action line + one document line.
-# The `semantic_text` field in each doc is sent to JINA to generate
+# The `semantic_content` field in each doc is sent to JINA to generate
 # the embedding, which is stored inside Elasticsearch.
 
 POST fresh_produce_jina/_bulk
 { "index": { "_id": "1" } }
-{ "id": 1, "name": "Cherry Tomatoes", "price": 12.5, "discount_price": null, "stock_kg": 85, "category": "vegetables", "description": "Sweet cherry tomatoes, perfect for salads and snacking. Locally grown and fresh.", "on_sale": false, "image_url": "https://imgur.com/w04NNaB.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_text": "Cherry Tomatoes Sweet cherry tomatoes, perfect for salads and snacking. Locally grown and fresh. vegetables" }
+{ "id": 1, "name": "Cherry Tomatoes", "price": 12.5, "discount_price": null, "stock_kg": 85, "category": "vegetables", "description": "Sweet cherry tomatoes, perfect for salads and snacking. Locally grown and fresh.", "on_sale": false, "image_url": "https://imgur.com/w04NNaB.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_content": "Cherry Tomatoes Sweet cherry tomatoes, perfect for salads and snacking. Locally grown and fresh. vegetables" }
 { "index": { "_id": "2" } }
-{ "id": 2, "name": "Organic Spinach", "price": 11.2, "discount_price": 8.99, "stock_kg": 55, "category": "vegetables", "description": "Fresh organic spinach, rich in iron and nutrients. Great for smoothies and cooking.", "on_sale": true, "image_url": "https://imgur.com/Qpchv67.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_text": "Organic Spinach Fresh organic spinach, rich in iron and nutrients. Great for smoothies and cooking. vegetables" }
+{ "id": 2, "name": "Organic Spinach", "price": 11.2, "discount_price": 8.99, "stock_kg": 55, "category": "vegetables", "description": "Fresh organic spinach, rich in iron and nutrients. Great for smoothies and cooking.", "on_sale": true, "image_url": "https://imgur.com/Qpchv67.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_content": "Organic Spinach Fresh organic spinach, rich in iron and nutrients. Great for smoothies and cooking. vegetables" }
 { "index": { "_id": "3" } }
-{ "id": 3, "name": "Fresh Broccoli", "price": 8.9, "discount_price": null, "stock_kg": 65, "category": "vegetables", "description": "Nutritious green broccoli, rich in vitamins and fiber. Perfect for steaming or stir-frying.", "on_sale": false, "image_url": "https://imgur.com/hTU3nNa.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_text": "Fresh Broccoli Nutritious green broccoli, rich in vitamins and fiber. Perfect for steaming or stir-frying. vegetables" }
+{ "id": 3, "name": "Fresh Broccoli", "price": 8.9, "discount_price": null, "stock_kg": 65, "category": "vegetables", "description": "Nutritious green broccoli, rich in vitamins and fiber. Perfect for steaming or stir-frying.", "on_sale": false, "image_url": "https://imgur.com/hTU3nNa.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_content": "Fresh Broccoli Nutritious green broccoli, rich in vitamins and fiber. Perfect for steaming or stir-frying. vegetables" }
 { "index": { "_id": "4" } }
-{ "id": 4, "name": "Yellow Bell Pepper", "price": 14.5, "discount_price": 11.99, "stock_kg": 40, "category": "vegetables", "description": "Vibrant yellow bell pepper, sweet and crunchy. Rich in vitamin C and antioxidants.", "on_sale": true, "image_url": "https://imgur.com/a6v6ej8.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_text": "Yellow Bell Pepper Vibrant yellow bell pepper, sweet and crunchy. Rich in vitamin C and antioxidants. vegetables" }
+{ "id": 4, "name": "Yellow Bell Pepper", "price": 14.5, "discount_price": 11.99, "stock_kg": 40, "category": "vegetables", "description": "Vibrant yellow bell pepper, sweet and crunchy. Rich in vitamin C and antioxidants.", "on_sale": true, "image_url": "https://imgur.com/a6v6ej8.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_content": "Yellow Bell Pepper Vibrant yellow bell pepper, sweet and crunchy. Rich in vitamin C and antioxidants. vegetables" }
 { "index": { "_id": "5" } }
-{ "id": 5, "name": "Purple Onions", "price": 6.75, "discount_price": null, "stock_kg": 90, "category": "vegetables", "description": "Mild and sweet purple onions, great for salads and grilling. Adds beautiful color to dishes.", "on_sale": false, "image_url": "https://imgur.com/Aos2og5.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_text": "Purple Onions Mild and sweet purple onions, great for salads and grilling. Adds beautiful color to dishes. vegetables" }
+{ "id": 5, "name": "Purple Onions", "price": 6.75, "discount_price": null, "stock_kg": 90, "category": "vegetables", "description": "Mild and sweet purple onions, great for salads and grilling. Adds beautiful color to dishes.", "on_sale": false, "image_url": "https://imgur.com/Aos2og5.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_content": "Purple Onions Mild and sweet purple onions, great for salads and grilling. Adds beautiful color to dishes. vegetables" }
 { "index": { "_id": "6" } }
-{ "id": 6, "name": "Ripe Avocados", "price": 18.9, "discount_price": 15.99, "stock_kg": 30, "category": "fruits", "description": "Creamy ripe avocados, perfect for guacamole and toast. Rich in healthy fats.", "on_sale": true, "image_url": "https://i.imgur.com/3cseQO9.png", "updated_at": "2026-02-08T10:00:00Z", "semantic_text": "Ripe Avocados Creamy ripe avocados, perfect for guacamole and toast. Rich in healthy fats. fruits" }
+{ "id": 6, "name": "Ripe Avocados", "price": 18.9, "discount_price": 15.99, "stock_kg": 30, "category": "fruits", "description": "Creamy ripe avocados, perfect for guacamole and toast. Rich in healthy fats.", "on_sale": true, "image_url": "https://i.imgur.com/3cseQO9.png", "updated_at": "2026-02-08T10:00:00Z", "semantic_content": "Ripe Avocados Creamy ripe avocados, perfect for guacamole and toast. Rich in healthy fats. fruits" }
 { "index": { "_id": "7" } }
-{ "id": 7, "name": "Sweet Carrots", "price": 7.5, "discount_price": null, "stock_kg": 70, "category": "vegetables", "description": "Sweet and crunchy orange carrots. High in beta-carotene and vitamin A.", "on_sale": false, "image_url": "https://imgur.com/jH4SbhK.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_text": "Sweet Carrots Sweet and crunchy orange carrots. High in beta-carotene and vitamin A. vegetables" }
+{ "id": 7, "name": "Sweet Carrots", "price": 7.5, "discount_price": null, "stock_kg": 70, "category": "vegetables", "description": "Sweet and crunchy orange carrots. High in beta-carotene and vitamin A.", "on_sale": false, "image_url": "https://imgur.com/jH4SbhK.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_content": "Sweet Carrots Sweet and crunchy orange carrots. High in beta-carotene and vitamin A. vegetables" }
 { "index": { "_id": "8" } }
-{ "id": 8, "name": "Purple Carrots", "price": 9.8, "discount_price": null, "stock_kg": 48, "category": "vegetables", "description": "Unique purple carrots, sweet and antioxidant-rich. Great roasted or raw in salads.", "on_sale": false, "image_url": "https://imgur.com/jH4SbhK.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_text": "Purple Carrots Unique purple carrots, sweet and antioxidant-rich. Great roasted or raw in salads. vegetables" }
+{ "id": 8, "name": "Purple Carrots", "price": 9.8, "discount_price": null, "stock_kg": 48, "category": "vegetables", "description": "Unique purple carrots, sweet and antioxidant-rich. Great roasted or raw in salads.", "on_sale": false, "image_url": "https://imgur.com/jH4SbhK.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_content": "Purple Carrots Unique purple carrots, sweet and antioxidant-rich. Great roasted or raw in salads. vegetables" }
 { "index": { "_id": "9" } }
-{ "id": 9, "name": "Green Lettuce", "price": 5.99, "discount_price": null, "stock_kg": 60, "category": "vegetables", "description": "Crisp green lettuce, perfect for fresh salads. Low calorie and refreshing.", "on_sale": false, "image_url": "https://imgur.com/Z5klm1s.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_text": "Green Lettuce Crisp green lettuce, perfect for fresh salads. Low calorie and refreshing. vegetables" }
+{ "id": 9, "name": "Green Lettuce", "price": 5.99, "discount_price": null, "stock_kg": 60, "category": "vegetables", "description": "Crisp green lettuce, perfect for fresh salads. Low calorie and refreshing.", "on_sale": false, "image_url": "https://imgur.com/Z5klm1s.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_content": "Green Lettuce Crisp green lettuce, perfect for fresh salads. Low calorie and refreshing. vegetables" }
 { "index": { "_id": "10" } }
-{ "id": 10, "name": "Seedless Watermelon", "price": 22.5, "discount_price": 19.99, "stock_kg": 120, "category": "fruits", "description": "Sweet and juicy seedless watermelon. Perfect for hot days, rich in hydration.", "on_sale": true, "image_url": "https://imgur.com/v1yJ0Zn.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_text": "Seedless Watermelon Sweet and juicy seedless watermelon. Perfect for hot days, rich in hydration. fruits" }
+{ "id": 10, "name": "Seedless Watermelon", "price": 22.5, "discount_price": 19.99, "stock_kg": 120, "category": "fruits", "description": "Sweet and juicy seedless watermelon. Perfect for hot days, rich in hydration.", "on_sale": true, "image_url": "https://imgur.com/v1yJ0Zn.jpg", "updated_at": "2026-02-08T10:00:00Z", "semantic_content": "Seedless Watermelon Sweet and juicy seedless watermelon. Perfect for hot days, rich in hydration. fruits" }
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -107,7 +107,7 @@ GET fresh_produce_jina/_search
 {
   "query": {
     "semantic": {
-      "field": "semantic_text",
+      "field": "semantic_content",
       "query": "healthy leafy greens"
     }
   },
