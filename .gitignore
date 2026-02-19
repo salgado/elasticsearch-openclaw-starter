@@ -1,0 +1,14 @@
+# Credenciais — nunca versionar
+.env
+*.env
+!.env.example
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# Skill empacotada (arquivo binário, não necessário)
+*.skill
